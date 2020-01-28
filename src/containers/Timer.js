@@ -23,7 +23,6 @@ class Timers extends Component {
         timer.addEventListener("secondsUpdated", this.onTimerUpdate.bind(this));
         timer.addEventListener("started", this.onTimerUpdate.bind(this));
         timer.addEventListener("reset", this.onTimerUpdate.bind(this));
-        timer.start();
     }
 
     onTimerUpdate(e) {
@@ -45,6 +44,7 @@ class Timers extends Component {
         this.state.timer.stop();
         this.setState({
             ...this.state,
+            timer_text: "00:00:00",
             timer_state: "stopped"
         });
     }
@@ -61,6 +61,7 @@ class Timers extends Component {
         this.state.timer.reset();
         this.setState({
             ...this.state,
+            timer_text: "00:00:00",
             timer_state: "ticking"
         });
     }
@@ -72,13 +73,13 @@ class Timers extends Component {
                 </div>
                 <div className="timer-buttons text-center">
                     {this.state.timer_state !== "ticking" && (
-                        <button onClick={this.startTimer} className="btn btn-success"><i class="fa fa-play"></i></button>
+                        <button title="Start" onClick={this.startTimer} className="btn btn-success"><i class="fa fa-play"></i></button>
                     )}
                     {this.state.timer_state === "ticking" && (
-                        <button onClick={this.pauseTimer} className="btn btn-warning"><i class="fa fa-pause"></i></button>
+                        <button title="Pause" onClick={this.pauseTimer} className="btn btn-warning"><i class="fa fa-pause"></i></button>
                     )}
-                    <button onClick={this.stopTimer} className="btn btn-danger"><i class="fa fa-stop"></i></button>
-                    <button onClick={this.resetTimer} className="btn btn-primary"><i class="fa fa-history"></i></button>
+                    <button title="Stop" onClick={this.stopTimer} className="btn btn-danger"><i class="fa fa-stop"></i></button>
+                    <button title="Reset" onClick={this.resetTimer} className="btn btn-primary"><i class="fa fa-history"></i></button>
                 </div>
             </div>
         );
