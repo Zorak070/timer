@@ -25,6 +25,12 @@ class Timers extends Component {
         timer.addEventListener("reset", this.onTimerUpdate.bind(this));
     }
 
+    componentWillUnmount() {
+        if (this.state.timer !== null) {
+            this.state.timer.stop();
+        }
+    }
+
     onTimerUpdate(e) {
         this.setState({
             ...this.state,
@@ -44,7 +50,6 @@ class Timers extends Component {
         this.state.timer.stop();
         this.setState({
             ...this.state,
-            timer_text: "00:00:00",
             timer_state: "stopped"
         });
     }
@@ -73,13 +78,13 @@ class Timers extends Component {
                 </div>
                 <div className="timer-buttons text-center">
                     {this.state.timer_state !== "ticking" && (
-                        <button title="Start" onClick={this.startTimer} className="btn btn-success"><i class="fa fa-play"></i></button>
+                        <button title="Start" onClick={this.startTimer} className="btn btn-success"><i className="fa fa-play"></i></button>
                     )}
                     {this.state.timer_state === "ticking" && (
-                        <button title="Pause" onClick={this.pauseTimer} className="btn btn-warning"><i class="fa fa-pause"></i></button>
+                        <button title="Pause" onClick={this.pauseTimer} className="btn btn-warning"><i className="fa fa-pause"></i></button>
                     )}
-                    <button title="Stop" onClick={this.stopTimer} className="btn btn-danger"><i class="fa fa-stop"></i></button>
-                    <button title="Reset" onClick={this.resetTimer} className="btn btn-primary"><i class="fa fa-history"></i></button>
+                    <button title="Stop" onClick={this.stopTimer} className="btn btn-danger"><i className="fa fa-stop"></i></button>
+                    <button title="Reset" onClick={this.resetTimer} className="btn btn-primary"><i className="fa fa-history"></i></button>
                 </div>
             </div>
         );

@@ -1,0 +1,13 @@
+.Countdown{
+    border: 2px solid gray;
+    padding: 16px;
+    border-radius: 10px;
+}
+
+.countdown-text{
+    text-align: center;
+}
+
+.countdown-button button{
+    margin: 4px;
+}
